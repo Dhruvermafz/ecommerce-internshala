@@ -1,10 +1,10 @@
 import React from "react";
 import { sharedStateContext } from "./SharedStatesContext";
-import { toaster, Notification, Placeholder } from "rsuite";
+import { toaster, Notification } from "rsuite";
 
 export const cartFromContext = React.createContext();
 
-export default function CartContext({ children }) {
+export default function CartContext(children) {
   const { setTotal, setNumberOfItemsInCart } =
     React.useContext(sharedStateContext);
   let key;
@@ -39,15 +39,15 @@ export default function CartContext({ children }) {
   }
 
   const decreaseQuant = (item) => {
-    let itemID = Object.keys(item)[0];
+    let itemId = Object.keys(item)[0];
     let itemProperties = Object.values(item)[0];
     let { price, quantity, name } = itemProperties;
     let cart = JSON.parse(localStorage.getItem("cart"));
 
     // updating cart in local Storage
-    cart[itemID]["quantity"] = `${Number(quantity) - 1}`;
-    if (cart[itemID]["quantity"] === "0") {
-      removeFromCart({ [itemID]: itemProperties });
+    cart[itemId]["quantity"] = `${Number(quantity) - 1}`;
+    if (cart[itemId]["quantity"] === "0") {
+      removeFromCart({ [itemId]: itemProperties });
       return;
     }
     localStorage.setItem("cart", JSON.stringify({ ...cart }));
@@ -69,7 +69,7 @@ export default function CartContext({ children }) {
   };
 
   const addToCart = (item) => {
-    let itemID = Object.keys(item)[0];
+    let itemId = Object.keys(item)[0];
     let itemProperties = Object.values(item)[0];
     let { price, name } = itemProperties;
     let cart =
@@ -78,15 +78,15 @@ export default function CartContext({ children }) {
         : JSON.parse(localStorage.getItem("cart"));
 
     // updating cart in local Storage and notifying
-    if (itemID in cart === true) {
-      let updatedQuantity = Number(cart[itemID]["quantity"]) + 1;
+    if (itemId in cart === true) {
+      let updatedQuantity = Number(cart[itemId]["quantity"]) + 1;
 
       if (updatedQuantity > 3) {
         notify({ productName: name, type: "limitExceeded" });
         return false;
       } else {
         notify({ productName: name, type: "added" });
-        cart[itemID]["quantity"] = Number(cart[itemID]["quantity"]) + 1;
+        cart[itemId]["quantity"] = Number(cart[itemId]["quantity"]) + 1;
         localStorage.setItem("cart", JSON.stringify({ ...cart }));
       }
     } else {

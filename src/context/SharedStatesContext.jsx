@@ -2,7 +2,7 @@ import React from "react";
 
 export const sharedStateContext = React.createContext();
 
-export default function SharedStateContext({ children }) {
+export default function SharedStateContext(children) {
   if (localStorage.getItem("total") === null)
     localStorage.setItem("total", "0");
   if (localStorage.getItem("noOfItems") === null)

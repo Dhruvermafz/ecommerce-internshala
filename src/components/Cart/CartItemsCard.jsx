@@ -1,9 +1,9 @@
 import { cartFromContext } from "./contexts/CartContext";
 import React from "react";
-import "./styles/cart.scss";
+import "../../styles/cart.scss";
 import { AiFillDelete } from "react-icons/ai";
 
-export default function CartItemsCard({ itemProperties, itemID }) {
+export default function CartItemsCard(itemProperties, itemId) {
   const { addToCart, removeFromCart, decreaseQuant } =
     React.useContext(cartFromContext);
   let { price, quantity, name, thumbnail } = itemProperties;
@@ -11,7 +11,7 @@ export default function CartItemsCard({ itemProperties, itemID }) {
   return (
     <>
       <div className="cart-item-container">
-        <div id={`cart-${itemID}`} className="cart-items">
+        <div id={`cart-${itemId}`} className="cart-items">
           <h4>{name}</h4>
           <div style={{ display: "flex", alignItems: "center", width: "100%" }}>
             <button
@@ -22,9 +22,9 @@ export default function CartItemsCard({ itemProperties, itemID }) {
                 backgroundColor: "#ba000d",
                 color: "white",
               }}
-              onClick={() => removeFromCart({ [itemID]: itemProperties })}
+              onClick={() => removeFromCart({ [itemId]: itemProperties })}
             >
-              <AiFillDelete></AiFillDelete>
+              <AiFillDelete />
             </button>
             <span
               style={{
@@ -40,7 +40,7 @@ export default function CartItemsCard({ itemProperties, itemID }) {
                 <button
                   className="btn-sm"
                   style={{ backgroundColor: "#a31545", color: "white" }}
-                  onClick={() => decreaseQuant({ [itemID]: itemProperties })}
+                  onClick={() => decreaseQuant({ [itemId]: itemProperties })}
                 >
                   -
                 </button>
@@ -48,7 +48,7 @@ export default function CartItemsCard({ itemProperties, itemID }) {
                 <button
                   className="btn-sm"
                   style={{ backgroundColor: "#46583f", color: "white" }}
-                  onClick={() => addToCart({ [itemID]: itemProperties })}
+                  onClick={() => addToCart({ [itemId]: itemProperties })}
                 >
                   +
                 </button>
