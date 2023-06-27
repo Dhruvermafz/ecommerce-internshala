@@ -1,4 +1,4 @@
-import { cartFromContext } from "./contexts/CartContext";
+import { cartFromContext } from "../../context/CartContext";
 import React from "react";
 import "../../styles/cart.scss";
 import { AiFillDelete } from "react-icons/ai";

@@ -5,8 +5,6 @@ import "../../styles/navbar.scss";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { sharedStateContext } from "../../context/SharedStatesContext";
 
-let selectedCategories = null;
-
 export default function Navbar(setIsCartVisible) {
   let { noOfItemsInCart } = React.useContext(sharedStateContext);
 
